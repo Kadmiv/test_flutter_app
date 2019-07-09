@@ -15,17 +15,23 @@ For help getting started with Flutter, view our
 [online documentation](https://flutter.io/docs), which offers tutorials, 
 samples, guidance on mobile development, and a full API reference.
 
+##Work with Floor (database)
 Open
-    -   nano $HOME/.bash_profile.
+# nano $HOME/.bash_profile.
 add
-    -   export PATH="$PATH:[PATH_TO_FLUTTER_GIT_DIRECTORY]/flutter/bin"
+# export PATH="$PATH:[PATH_TO_FLUTTER_GIT_DIRECTORY]/flutter/bin"
 Run
-    -   source $HOME/.bash_profile
-
+# source $HOME/.bash_profile
 Check
-    -   echo $PATH
+# echo $PATH
 
 Run the generator with
-    - flutter packages pub run build_runner build
+# flutter packages pub run build_runner build
 To automatically run it, whenever a file changes, use
-    - flutter packages pub run build_runner watch
+# flutter packages pub run build_runner watch
+    
+##Work with Chopper (Restful api)
+#dart
+pub run build_runner build
+#flutter
+flutter packages pub run build_runner build

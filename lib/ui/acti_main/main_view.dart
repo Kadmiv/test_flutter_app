@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:test_flutter_app/resources/strings.dart';
+import 'package:test_flutter_app/ui/acti_map/acti_html.dart';
 import 'package:test_flutter_app/ui/acti_map/acti_map.dart';
 import 'package:test_flutter_app/ui/acti_second/second_view.dart';
 
@@ -83,7 +84,7 @@ class _MyHomePageState extends State<MyHomePage> {
     Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => OfflineMap(),
+          builder: (context) => MapView(),
         ));
   }
 }

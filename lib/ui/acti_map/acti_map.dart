@@ -1,53 +1,59 @@
-import 'dart:convert';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:webview_flutter/webview_flutter.dart';
+import 'package:latlong/latlong.dart';
 
-class OfflineMap extends StatelessWidget {
-  static const String route = '/offline_map';
+class MapView extends StatefulWidget {
+  @override
+  _MapViewState createState() => new _MapViewState();
+}
 
-//
+class _MapViewState extends State<MapView> {
+  var points = [
+    new LatLng(45.523970, -122.663081),
+    new LatLng(45.528788, -122.684633),
+    new LatLng(45.528864, -122.667195)
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Offline Map')),
-//    drawer: buildDrawer(context, route),
-      body: Padding(
-        padding: EdgeInsets.all(8.0),
-        child: Column(
-          children: [
-            Padding(
-              padding: EdgeInsets.only(top: 8.0, bottom: 8.0),
-              child: Text(
-                  'This is an offline map that is showing Anholt Island, Denmark.'),
+        appBar: new AppBar(title: new Text('Leaflet Maps')),
+        body: new FlutterMap(
+            options: new MapOptions(
+//              minZoom: 10.0,
+              maxZoom: 50.0,
+              center: LatLng(40.71, -74.00),
             ),
-            Flexible(
-              child: FlutterMap(
-                options: MapOptions(
-//                center: LatLng(56.704173, 11.543808),
-                  minZoom: 12.0,
-                  maxZoom: 14.0,
-                  zoom: 13.0,
-//                swPanBoundary: LatLng(56.6877, 11.5089),
-//                nePanBoundary: LatLng(56.7378, 11.6644),
-                ),
-                layers: [
-                  TileLayerOptions(
-                    tileProvider: AssetTileProvider(),
-                    maxZoom: 14.0,
-                    urlTemplate: 'assets/map/anholt_osmbright/{z}/{x}/{y}.png',
-                  ),
-                ],
+            layers: [
+              new TileLayerOptions(
+                  urlTemplate:
+                      "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+                  subdomains: ['a', 'b', 'c']),
+              new PolylineLayerOptions(
+                polylines: [new Polyline(points: points)],
               ),
-            ),
-          ],
-        ),
-      ),
-    );
+              new MarkerLayerOptions(markers: [
+                new Marker(
+                    width: 45.0,
+                    height: 45.0,
+                    point: new LatLng(40.73, -74.00),
+                    builder: (context) => new Container(
+                          child: IconButton(
+                            icon: Icon(Icons.location_on),
+                            color: Colors.red,
+                            iconSize: 45.0,
+                            onPressed: () {
+                              print('Marker tapped');
+                            },
+                          ),
+                        ))
+              ]),
+            ]));
   }
+}
+
 //
 //  @override
 //  Widget build(BuildContext context) {
@@ -80,52 +86,3 @@ class OfflineMap extends StatelessWidget {
 //      ],
 //    );
 //  }
-
-//  @override
-//  Widget build(BuildContext context) {
-    String html =
-        '<h1>This is heading 1</h1> <h2>This is heading 2</h2><h3>This is heading 3</h3><h4>This is heading 4</h4><h5>This is heading 5</h5><h6>This is heading 6</h6><p><img alt="Test Image" src="https://i.ytimg.com/vi/RHLknisJ-Sg/maxresdefault.jpg" /></p>';
-//
-//    return Scaffold(
-//      appBar: AppBar(
-//        title: Text('Plugin example app'),
-//      ),
-//      body: SingleChildScrollView(
-//        child: Center(
-////          child:  HtmlView(data: html),
-//            child: WebView(
-////              key: _key,
-//          javascriptMode: JavascriptMode.unrestricted,
-////              initialUrl: _url,
-//        )),
-//      ),
-//    );
-//  }
-
-  WebViewController _controller;
-
-//  @override
-//  Widget build(BuildContext context) {
-//    _loadHtmlFromAssets();
-//    return Scaffold(
-//      appBar: AppBar(title: Text('Help')),
-//      body: WebView(
-//        initialUrl: '',
-//        onWebViewCreated: (WebViewController webViewController) {
-//          _controller = webViewController;
-//        },
-//      ),
-//    );
-//  }
-//
-//  _loadHtmlFromAssets() async {
-//    String fileText = await rootBundle.loadString('assets/help.html');
-//    _controller.loadUrl(
-////        Uri.dataFromString(fileText,
-////            mimeType: 'text/html', encoding: Encoding.getByName('utf-8'))
-////        .toString()
-//        Uri.dataFromString('<html><body>$html</body></html>',
-//                mimeType: 'text/html')
-//            .toString());
-//  }
-}

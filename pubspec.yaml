@@ -21,22 +21,54 @@ dependencies:
   flutter:
     sdk: flutter
 
+  # Network
   http: ^0.12.0+2
+  dio: 2.1.10
+  # RESTfull
+  #jaguar_http: 0.0.2+1
+  chopper: 2.4.1
+  #  Work with DB
+  floor: ^0.7.0
+  #sqflite: 0.13.0+1
+  #  flutter_html_view: ^0.5.11
+  #  webview_flutter: ^0.3.9+1
+  flutter_widget_from_html: 0.2.1+1
+  #  Work with map and location
+  flutter_map: any
+  flutter_map_marker_cluster: any # or the latest version on Pub
+  location:
+    ^1.4.1
+
+  #  path_provider: ^1.1.0
+  ##zoomable_image: 1.2.1+1
+  ##multi_image_picker: 2.3.32
+  #  shared_preferences: ^0.5.3+2
+  ##sqflite: 0.13.0+1
+  #  path_provider: 0.4.1
+  ##zoomable_image: 1.2.1+1
+  ##multi_image_picker: 2.3.32
+  #  shared_preferences: 0.4.3
+
+
+  #  flutter_map: any
+
   english_words: ^3.1.5
   cupertino_icons: ^0.1.2
-  floor: ^0.7.0
-  #  flutter_html_view: ^0.3.1
-  flutter_map: any
-  webview_flutter: ^0.3.9+1
 
-#  flutter_map:
-#    path: ../
+
+
+flutter_map:
+  path: ../
+
 
 dev_dependencies:
+
   flutter_test:
     sdk: flutter
 
-  floor_generator: ^0.7.0
+  #Нужно переключаться межу  chopper_generator и floor_generator
+  chopper_generator: ^2.4.1
+  #floor_generator: ^0.7.0
   build_runner: ^1.6.1
 
 
@@ -57,6 +89,7 @@ flutter:
   #  - images/a_dot_ham.jpeg
 
   assets:
+    - assets/help.html
     - assets/berlin.mbtiles
     - assets/map/anholt_osmbright/12/2177/
     - assets/map/anholt_osmbright/12/2178/
